@@ -10,5 +10,9 @@ app.get('/', (req, res) => {
   })
 })
 
+app.get('/mem', (req, res) => {
+  res.json(os.freemem() / 1024 / 1024)
+})
+
 
 app.listen( process.env.PORT || 8080 )
