@@ -19,7 +19,7 @@ const Box = styled.div`
 `
 
 export function Monitor() {
-  const socket = useMemo(() => io.connect('/api/monitor'), [])
+  const socket = useMemo(() => io.connect('/', {path: '/api/monitor'}), [])
   const [load, setLoad] = useState({
     currentload: 0,
   })
