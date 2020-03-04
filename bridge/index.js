@@ -3,7 +3,6 @@ const {
   uuid,
   Bridge,
   AccessoryEventTypes,
-  VoidCallback,
   Categories
 } = require("hap-nodejs");
 const { name } = require("./package.json");
