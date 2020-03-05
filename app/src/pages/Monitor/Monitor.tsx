@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react'
-import io from 'socket.io-client'
+import { connect } from "mqtt";
 import styled from 'styled-components';
 import { Gouge } from '../../components/Gouge';
 
@@ -19,26 +19,33 @@ const Box = styled.div`
 `
 
 export function Monitor() {
-  const socket = useMemo(() => io.connect('/', {path: '/api/monitor/socket.io'}), [])
+  const client = useMemo(() => connect('ws://192.168.0.104:1884'), [])
   const [load, setLoad] = useState({
     currentload: 0,
   })
   const [mem, setMem] = useState({
-    used: 100,
+    available: 0,
     total: 100
   })
   useEffect(() => {
-    console.log('load')
-    socket.on('load', setLoad)
-    socket.on('mem', setMem)
-  }, [socket])
+    client.subscribe('board/load');
+    client.subscribe('board/mem');
+    client.on('message', (topic, payload) => {
+      if ('board/load' === topic) {
+        setLoad(JSON.parse(payload.toString()));
+      }
+      if ('board/mem' === topic) {
+        setMem(JSON.parse(payload.toString()));
+      }
+    });
+  }, [client])
 
   return <Dash>
     <Box>
       <Gouge value={load.currentload} label={(v: number) => `${v.toFixed(1)}%`}/>
     </Box>
     <Box>
-      <Gouge value={mem.used / mem.total * 100} label={(v: number) => `${v.toFixed(1)}%`}/>
+      <Gouge value={mem.available / mem.total * 100} label={(v: number) => `${v.toFixed(1)}%`}/>
     </Box>
   </Dash>
 }

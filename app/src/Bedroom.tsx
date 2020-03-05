@@ -27,7 +27,7 @@ const Center = styled.div`
 const stat = "stat/quarto/POWER";
 const cmnd = "cmnd/quarto/POWER";
 
-const client = connect('ws://192.168.0.104:1884');
+const client = connect(`ws://192.168.0.104:1884`);
 
 export function Bedroom() {
   const [state, setState] = useState();

@@ -23,7 +23,7 @@ export function Gouge(props: GougeProps) {
       gaugeRef.current = SvgGauge(gaugeEl.current, options);
       gaugeRef.current.setValue(props.value || 0);
     }
-    gaugeRef.current.setValueAnimated(props.value, .5);
+    gaugeRef.current.setValueAnimated(props.value, 1.5);
   }, [props]);
   return <div ref={gaugeEl} className="gauge-container" />
 }
