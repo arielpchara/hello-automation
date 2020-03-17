@@ -19,7 +19,7 @@ const Box = styled.div`
 `
 
 export function Monitor() {
-  const client = useMemo(() => connect('ws://192.168.0.104:1884'), [])
+  const client = useMemo(() => connect('ws://192.168.0.111:1884'), [])
   const [load, setLoad] = useState({
     currentload: 0,
   })
@@ -27,15 +27,23 @@ export function Monitor() {
     available: 0,
     total: 100
   })
+  const [temp, setTemp] = useState({
+    main: 0,
+    max: 100
+  })
   useEffect(() => {
     client.subscribe('board/load');
     client.subscribe('board/mem');
+    client.subscribe('board/temp');
     client.on('message', (topic, payload) => {
       if ('board/load' === topic) {
         setLoad(JSON.parse(payload.toString()));
       }
       if ('board/mem' === topic) {
         setMem(JSON.parse(payload.toString()));
+      }
+      if ('board/temp' === topic) {
+        setTemp(JSON.parse(payload.toString()));
       }
     });
   }, [client])
@@ -46,6 +54,9 @@ export function Monitor() {
     </Box>
     <Box>
       <Gouge value={mem.available / mem.total * 100} label={(v: number) => `${v.toFixed(1)}%`}/>
+    </Box>
+    <Box>
+      <Gouge value={temp.main} max={temp.max} />
     </Box>
   </Dash>
 }

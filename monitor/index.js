@@ -5,16 +5,15 @@ const {connect} = require('mqtt')
 
 server.listen(process.env.PORT || 8088);
 
-const client = connect('http://192.168.0.104/mqtt')
+const client = connect('http://192.168.0.111/mqtt')
 
 client.on('connect', () => {
     setInterval(() => {
       si.currentLoad().then(JSON.stringify.bind(JSON)).then(client.publish.bind(client, 'board/load'))
       si.mem().then(JSON.stringify.bind(JSON)).then(client.publish.bind(client, 'board/mem'))
+      si.cpuTemperature().then(JSON.stringify.bind(JSON)).then(client.publish.bind(client, 'board/temp'))
     }, 1500)
 })
-
-
 
 // io.on('connection', function (socket) {
 //   setInterval(() => {
