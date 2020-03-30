@@ -19,7 +19,7 @@ const Box = styled.div`
 `
 
 export function Monitor() {
-  const client = useMemo(() => connect('ws://192.168.0.111:1884'), [])
+  const client = useMemo(() => connect('ws://192.168.0.106:1884'), [])
   const [load, setLoad] = useState({
     currentload: 0,
   })
