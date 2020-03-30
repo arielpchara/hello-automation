@@ -12,7 +12,7 @@ const accessories = require("./accessories");
 init();
 
 const mqttClient = connect(
-  process.env.MQTT_ADDR || "mqtt://192.168.0.106:1883"
+  process.env.MQTT_ADDR || "mqtt://192.168.0.113:1883"
 );
 
 const bridge = new Bridge(name, uuid.generate(name));

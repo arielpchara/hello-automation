@@ -5,7 +5,7 @@ const {connect} = require('mqtt')
 
 server.listen(process.env.PORT || 8088);
 
-const client = connect('http://192.168.0.106/mqtt')
+const client = connect('http://192.168.0.113/mqtt')
 
 client.on('connect', () => {
     setInterval(() => {
