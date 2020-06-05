@@ -1,3 +1,3 @@
 module.exports = {
-  ...require('./MainLight')
+  ...require('./suitemaster')
 }

@@ -12,7 +12,7 @@ const accessories = require("./accessories");
 init();
 
 const mqttClient = connect(
-  process.env.MQTT_ADDR || "mqtt://192.168.0.113:1883"
+  process.env.MQTT_ADDR || "mqtt://192.168.0.111:1883"
 );
 
 const bridge = new Bridge(name, uuid.generate(name));
@@ -28,11 +28,9 @@ bridge.addBridgedAccessories(all);
 
 bridge.publish(
   {
-    username: "e2:aa:69:30:4b:36",
-    pincode: "091-00-120",
+    username: "e2:aa:69:30:4b:39",
+    pincode: "091-00-121",
     category: Categories.BRIDGE
   },
   true
 );
-
-console.log(bridge)
