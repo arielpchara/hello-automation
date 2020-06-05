@@ -22,13 +22,15 @@ bridge.on(AccessoryEventTypes.IDENTIFY, (paired, callback) => {
   callback();
 });
 
+console.log(accessories)
+
 const all = Object.values(accessories).map(accessory => accessory(mqttClient));
 
 bridge.addBridgedAccessories(all);
 
 bridge.publish(
   {
-    username: "e2:aa:69:30:4b:39",
+    username: "e2:aa:69:30:4b:31",
     pincode: "091-00-121",
     category: Categories.BRIDGE
   },

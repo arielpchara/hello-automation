@@ -12,7 +12,7 @@ const bed = (mqttClient) => {
     }
   })
   return createTasmotaAccessory({
-    name: 'Main',
+    name: 'Bed',
     Manufacturer: 'Sonoff',
     model: 'Sonoff Mini',
     onPower: (value) => {

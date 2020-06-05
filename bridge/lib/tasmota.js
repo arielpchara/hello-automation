@@ -32,7 +32,7 @@ function createTasmotaAccessory(params) {
     event
   } = params
 
-  const tasmotaUUID = uuid.generate("tasmota:accessories:" + name);
+  const tasmotaUUID = uuid.generate(`tasmota:accessories:${name}`);
   const tasmotaAccessory = new Accessory(name, uuid.generate(tasmotaUUID));
   
   tasmotaAccessory

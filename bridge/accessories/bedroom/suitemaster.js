@@ -12,7 +12,7 @@ const suitemaster = (mqttClient) => {
     }
   })
   return createTasmotaAccessory({
-    name: 'Main',
+    name: 'SuiteMaster',
     Manufacturer: 'Shelly',
     model: 'ShellyOne',
     onPower: (value) => {
