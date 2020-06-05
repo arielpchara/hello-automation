@@ -1,3 +1,4 @@
 module.exports = {
-  ...require('./suitemaster')
+  ...require('./suitemaster'),
+  ...require('./bed')
 }
