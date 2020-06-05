@@ -1,7 +1,7 @@
 const { createTasmotaAccessory } = require('../../lib/tasmota')
 const { EventEmitter } = require('events')
 
-const light = (mqttClient) => {
+const bed = (mqttClient) => {
   let state
   const event = new EventEmitter()
   mqttClient.subscribe(`stat/bed/POWER`)
@@ -13,8 +13,8 @@ const light = (mqttClient) => {
   })
   return createTasmotaAccessory({
     name: 'Main',
-    Manufacturer: 'Shelly',
-    model: 'ShellyOne',
+    Manufacturer: 'Sonoff',
+    model: 'Sonoff Mini',
     onPower: (value) => {
       console.log(`OK: ${value}`)
       mqttClient.publish(`cmnd/bed/POWER`, value ? 'ON' : 'OFF')
@@ -25,5 +25,5 @@ const light = (mqttClient) => {
 }
 
 module.exports = {
-  light
+  bed
 }

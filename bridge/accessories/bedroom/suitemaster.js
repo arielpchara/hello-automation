@@ -1,7 +1,7 @@
 const { createTasmotaAccessory } = require('../../lib/tasmota')
 const { EventEmitter } = require('events')
 
-const light = (mqttClient) => {
+const suitemaster = (mqttClient) => {
   let state
   const event = new EventEmitter()
   mqttClient.subscribe(`stat/suitemaster/POWER`)
@@ -25,5 +25,5 @@ const light = (mqttClient) => {
 }
 
 module.exports = {
-  light
+  suitemaster
 }
