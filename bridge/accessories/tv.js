@@ -1,4 +1,4 @@
-const { createTasmotaAccessory } = require('../../lib/tasmota')
+const { createTasmotaAccessory } = require('../lib/tasmota')
 const { EventEmitter } = require('events')
 
 const tvroom = (mqttClient) => {
