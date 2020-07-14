@@ -9,11 +9,19 @@ const { name } = require("./package.json");
 const { connect } = require("mqtt");
 const accessories = require("./accessories");
 
+const {argv} = require('yargs')
+
 init();
 
-const mqttClient = connect(
-  process.env.MQTT_ADDR || "mqtt://192.168.0.111:1883"
-);
+const brokerURL = argv.broker
+
+if(!brokerURL) {
+  throw new Error('Invalid Broker Address')
+}
+
+console.log(`Connecting to MQTT (${brokerURL})`)
+
+const mqttClient = connect(brokerURL);
 
 const bridge = new Bridge(name, uuid.generate(name));
 
