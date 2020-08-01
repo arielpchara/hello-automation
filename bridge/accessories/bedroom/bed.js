@@ -16,7 +16,6 @@ const bed = (mqttClient) => {
     Manufacturer: 'Sonoff',
     model: 'Sonoff Mini',
     onPower: (value) => {
-      console.log(`OK: ${value}`)
       mqttClient.publish(`cmnd/bed/POWER`, value ? 'ON' : 'OFF')
     },
     getPower: () => state === 'ON',

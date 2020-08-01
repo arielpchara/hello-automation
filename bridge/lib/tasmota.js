@@ -32,7 +32,7 @@ function createTasmotaAccessory(params) {
     event
   } = params
 
-  const tasmotaUUID = uuid.generate(`tasmota:accessories:${name}`);
+  const tasmotaUUID = uuid.generate(`tasmota.accessories.${name}`);
   const tasmotaAccessory = new Accessory(name, uuid.generate(tasmotaUUID));
   
   tasmotaAccessory
@@ -54,14 +54,20 @@ function createTasmotaAccessory(params) {
 
   power.on(CharacteristicEventTypes.SET, (value, callback) => {
       onPower(value)
+      console.log('feedback SET', value)
       callback()
     })
   power.on(CharacteristicEventTypes.GET, (callback) => {
-      callback(null, getPower());
+      const power = getPower()
+      console.log('feedback GET', power)
+      callback(undefined, power);
     })
 
   if(event) {
-    event.on('POWER', power.updateValue)
+    event.on('POWER', (value) => {
+      console.log('POWER', value)
+      power.updateValue(value)
+    })
   }
 
   return tasmotaAccessory;

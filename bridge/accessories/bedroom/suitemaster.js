@@ -16,7 +16,6 @@ const suitemaster = (mqttClient) => {
     Manufacturer: 'Shelly',
     model: 'ShellyOne',
     onPower: (value) => {
-      console.log(`OK: ${value}`)
       mqttClient.publish(`cmnd/suitemaster/POWER`, value ? 'ON' : 'OFF')
     },
     getPower: () => state === 'ON',

@@ -16,7 +16,6 @@ const tvroom = (mqttClient) => {
     Manufacturer: 'Sonoff',
     model: 'Sonoff Mini',
     onPower: (value) => {
-      console.log(`OK: ${value}`)
       mqttClient.publish(`cmnd/tvroom/POWER`, value ? 'ON' : 'OFF')
     },
     getPower: () => state === 'ON',
