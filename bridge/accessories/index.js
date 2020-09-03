@@ -1,4 +1,5 @@
 module.exports = {
   ...require('./bedroom'),
-  ...require('./tv')
+  ...require('./tv'),
+  ...require('./sofa'),
 }
