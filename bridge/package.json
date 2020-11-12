@@ -12,14 +12,18 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "hap-nodejs": "^0.7.7",
-    "mqtt": "^3.0.0",
-    "node-persist": "^3.0.5"
+    "hap-nodejs": "^0.8.2",
+    "mqtt": "^4.2.4",
+    "node-persist": "^3.1.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
   },
   "nodemonConfig": {
-    "watch": ["index.js", "./accessories/*", "./lib/*"]
+    "watch": [
+      "index.js",
+      "./accessories/*",
+      "./lib/*"
+    ]
   }
 }
