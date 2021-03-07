@@ -8,6 +8,7 @@ const {
 const { name } = require("./package.json");
 const { connect } = require("mqtt");
 const accessories = require("./accessories");
+const inputs = require('./accessories/input')
 
 const {argv} = require('yargs')
 
@@ -23,6 +24,11 @@ console.log(`Connecting to MQTT (${brokerURL})`)
 
 const mqttClient = connect(brokerURL);
 
+
+Object.entries(inputs).map(([name, loader]) => {
+  loader(mqttClient)
+})
+
 const bridge = new Bridge(name, uuid.generate(name));
 
 bridge.on(AccessoryEventTypes.IDENTIFY, (paired, callback) => {
@@ -30,7 +36,6 @@ bridge.on(AccessoryEventTypes.IDENTIFY, (paired, callback) => {
   callback();
 });
 
-console.log(accessories)
 
 const all = Object.values(accessories).map(accessory => accessory(mqttClient));
 
