@@ -1,5 +1,7 @@
 # Hello Automation 🏠
 
+⚠️ **WARNING: This is an experimental project. Do not use in production or for critical systems.**
+
 A domestic IoT automation project integrating smart home devices with Siri via HomeKit. Built with Node.js, React, and MQTT.
 
 ## Overview
